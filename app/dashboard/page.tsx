@@ -32,7 +32,6 @@ export default function DashboardPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Get user data from cookie via a simple check
         const checkRes = await fetch('/api/attendance/history?limit=1')
 
         if (!checkRes.ok) {
@@ -40,8 +39,6 @@ export default function DashboardPage() {
           return
         }
 
-        // Parse token to get user info (simplified)
-        // In production, you'd want a dedicated /api/user/me endpoint
         const params = new URLSearchParams()
         params.set('limit', '1')
 
@@ -57,18 +54,12 @@ export default function DashboardPage() {
         }
 
         // Get user data from localStorage (set during login)
-        const storedUser = localStorage.getItem('user')
-        if (storedUser) {
-          setUser(JSON.parse(storedUser))
-        } else {
-          // Try to fetch from a user endpoint
-          const userRes = await fetch('/api/user/me')
-          if (userRes.ok) {
-            const userData = await userRes.json()
-            if (userData.data) {
-              setUser(userData.data)
-              localStorage.setItem('user', JSON.stringify(userData.data))
-            }
+        const userRes = await fetch('/api/user/me')
+        if (userRes.ok) {
+          const userData = await userRes.json()
+          if (userData.data) {
+            setUser(userData.data)
+            localStorage.setItem('user', JSON.stringify(userData.data)) // update localStorage juga
           }
         }
       } catch (err) {
