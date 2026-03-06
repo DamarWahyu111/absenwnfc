@@ -162,6 +162,7 @@ export default function DashboardPage() {
                         {new Date(todayAttendance.check_in).toLocaleTimeString('id-ID', {
                           hour: '2-digit',
                           minute: '2-digit',
+                          timeZone: 'Asia/Jakarta',
                         })}
                       </span>
                     </div>
@@ -177,6 +178,7 @@ export default function DashboardPage() {
                         {new Date(todayAttendance.check_out).toLocaleTimeString('id-ID', {
                           hour: '2-digit',
                           minute: '2-digit',
+                          timeZone: 'Asia/Jakarta',
                         })}
                       </span>
                     </div>
