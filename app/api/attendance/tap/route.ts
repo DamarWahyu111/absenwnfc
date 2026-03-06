@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Get today's date
-    const today = new Date().toISOString().split('T')[0]
+    const today = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Jakarta' })
 
     // Check if attendance record exists for today
     const { data: existingAttendance } = await supabase
