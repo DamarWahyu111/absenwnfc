@@ -219,7 +219,6 @@ export default function DashboardPage() {
         <Card>
           <CardHeader>
             <CardTitle>Riwayat Absensi Terbaru</CardTitle>
-            <CardDescription>5 absensi terakhir Anda</CardDescription>
           </CardHeader>
           <CardContent>
             <Link href="/dashboard/history">
