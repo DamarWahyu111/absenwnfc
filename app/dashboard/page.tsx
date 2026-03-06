@@ -22,13 +22,18 @@ interface AttendanceRecord {
   check_out: string | null
 }
 
+const parseTime = (timeStr: string) => {
+  const normalized = timeStr.endsWith('Z') ? timeStr : timeStr.replace(' ', 'T') + 'Z'
+  return new Date(normalized)
+}
+
 export default function DashboardPage() {
   const router = useRouter()
   const [user, setUser] = useState<User | null>(null)
   const [todayAttendance, setTodayAttendance] = useState<AttendanceRecord | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -159,7 +164,7 @@ export default function DashboardPage() {
                         <span className="text-sm font-medium">Check-In</span>
                       </div>
                       <span className="text-sm font-semibold">
-                        {new Date(todayAttendance.check_in).toLocaleTimeString('id-ID', {
+                        {parseTime(todayAttendance.check_in).toLocaleTimeString('id-ID', {
                           hour: '2-digit',
                           minute: '2-digit',
                           timeZone: 'Asia/Jakarta',
@@ -175,7 +180,7 @@ export default function DashboardPage() {
                         <span className="text-sm font-medium">Check-Out</span>
                       </div>
                       <span className="text-sm font-semibold">
-                        {new Date(todayAttendance.check_out).toLocaleTimeString('id-ID', {
+                        {parseTime(todayAttendance.check_out).toLocaleTimeString('id-ID', {
                           hour: '2-digit',
                           minute: '2-digit',
                           timeZone: 'Asia/Jakarta',
