@@ -63,7 +63,6 @@ export async function POST(request: NextRequest) {
     let attendanceRecord
 
     if (!existingAttendance) {
-      // Create new attendance record with check-in
       const { data, error } = await supabase
         .from('attendance')
         .insert([
@@ -86,7 +85,6 @@ export async function POST(request: NextRequest) {
 
       attendanceRecord = data
     } else if (existingAttendance.check_in && !existingAttendance.check_out) {
-      // User already checked in, do check-out
       const { data, error } = await supabase
         .from('attendance')
         .update({

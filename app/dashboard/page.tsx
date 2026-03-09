@@ -23,8 +23,8 @@ interface AttendanceRecord {
 }
 
 const parseTime = (timeStr: string) => {
-  const normalized = timeStr.endsWith('Z') ? timeStr : timeStr.replace(' ', 'T') + 'Z'
-  return new Date(normalized)
+  // const normalized = timeStr.endsWith('Z') ? timeStr : timeStr.replace(' ', 'T') + 'Z'
+  return new Date(timeStr)
 }
 
 export default function DashboardPage() {
@@ -167,7 +167,7 @@ export default function DashboardPage() {
                         {parseTime(todayAttendance.check_in).toLocaleTimeString('id-ID', {
                           hour: '2-digit',
                           minute: '2-digit',
-                          timeZone: 'Asia/Jakarta',
+                          // timeZone: 'Asia/Jakarta',
                         })}
                       </span>
                     </div>
@@ -183,7 +183,7 @@ export default function DashboardPage() {
                         {parseTime(todayAttendance.check_out).toLocaleTimeString('id-ID', {
                           hour: '2-digit',
                           minute: '2-digit',
-                          timeZone: 'Asia/Jakarta',
+                          // timeZone: 'Asia/Jakarta',
                         })}
                       </span>
                     </div>
