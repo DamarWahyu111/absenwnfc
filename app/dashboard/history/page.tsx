@@ -80,9 +80,9 @@ export default function HistoryPage() {
   const formatTime = (timeStr: string | null) => {
     if (!timeStr) return '-'
 
-    if (/^\d{2}:\d{2}:\d{2}$/.test(timeStr)) {
-      return timeStr.slice(0, 5)
-    }
+    const normalized = timeStr.endsWith('Z') ? timeStr : timeStr.replace(' ', 'T') + 'Z'
+      ? timeStr
+      : timeStr + 'Z'
 
     return new Date(timeStr).toLocaleTimeString('id-ID', {
       hour: '2-digit',
