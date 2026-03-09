@@ -79,6 +79,12 @@ export default function HistoryPage() {
 
   const formatTime = (timeStr: string | null) => {
     if (!timeStr) return '-'
+    
+    useEffect(() => {
+      if (records.length > 0) {
+        console.log('check_in raw:', JSON.stringify(records[0].check_in))
+      }
+    }, [records])
 
     const normalized = timeStr.endsWith('Z') ? timeStr : timeStr.replace(' ', 'T')
       ? timeStr
