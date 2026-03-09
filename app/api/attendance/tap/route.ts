@@ -70,7 +70,7 @@ export async function POST(request: NextRequest) {
           {
             user_id: user.id,
             date: today,
-            check_in: new Date().toISOString(),
+            check_in: new Date(Date.now() + 7 * 60 * 60 * 1000).toISOString().replace('Z', ''),
           },
         ])
         .select()
@@ -90,7 +90,7 @@ export async function POST(request: NextRequest) {
       const { data, error } = await supabase
         .from('attendance')
         .update({
-          check_out: new Date().toISOString(),
+          check_out: new Date(Date.now() + 7 * 60 * 60 * 1000).toISOString().replace('Z', ''),
         })
         .eq('id', existingAttendance.id)
         .select()
