@@ -80,7 +80,7 @@ export default function HistoryPage() {
   const formatTime = (timeStr: string | null) => {
     if (!timeStr) return '-'
 
-    const normalized = timeStr.endsWith('Z') ? timeStr : timeStr.replace(' ', 'T') + 'Z'
+    const normalized = timeStr.endsWith('Z') ? timeStr : timeStr.replace(' ', 'T')
       ? timeStr
       : timeStr + 'Z'
 
