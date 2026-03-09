@@ -78,24 +78,14 @@ export default function HistoryPage() {
   }
 
   const formatTime = (timeStr: string | null) => {
-    if (!timeStr) return '-'
-    
-    useEffect(() => {
-      if (records.length > 0) {
-        console.log('check_in raw:', JSON.stringify(records[0].check_in))
-      }
-    }, [records])
-
-    const normalized = timeStr.endsWith('Z') ? timeStr : timeStr.replace(' ', 'T')
-      ? timeStr
-      : timeStr + 'Z'
-
-    return new Date(timeStr).toLocaleTimeString('id-ID', {
-      hour: '2-digit',
-      minute: '2-digit',
-      timeZone: 'Asia/Jakarta',
-    })
-  }
+  if (!timeStr) return '-'
+  
+  const timePart = timeStr.split('T')[1] 
+  if (!timePart) return '-'
+  
+  const [hour, minute] = timePart.split(':')
+  return `${hour}.${minute}` 
+}
 
   const calculateDuration = (checkIn: string | null, checkOut: string | null) => {
     if (!checkIn || !checkOut) return '-'
